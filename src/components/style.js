@@ -31,7 +31,9 @@ export default StyleSheet.create({
     overflow: 'hidden',
   },
   tooltipText: {
-    color:"#fff"
+    color:"#fff",
+    fontSize:20,
+    alignContent:'center'
   },
   tooltipContainer: {
     flex: 1,

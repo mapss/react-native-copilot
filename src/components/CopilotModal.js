@@ -5,6 +5,7 @@ import Tooltip from './Tooltip';
 import StepNumber from './StepNumber';
 import styles, { MARGIN, ARROW_SIZE, STEP_NUMBER_DIAMETER, STEP_NUMBER_RADIUS } from './style';
 import type { SvgMaskPathFn } from '../types';
+import DeviceInfo from 'react-native-device-info';
 
 type Props = {
   stop: () => void,
@@ -106,7 +107,7 @@ class CopilotModal extends Component<Props, State> {
   async _animateMove(obj = {}): void {
     const layout = await this.measure();
     if (!this.props.androidStatusBarVisible && Platform.OS === 'android') {
-      obj.top -= StatusBar.currentHeight; // eslint-disable-line no-param-reassign
+      obj.top -= DeviceInfo.hasNotch() && Platform.Version>=28? 0:StatusBar.currentHeight; // eslint-disable-line no-param-reassign
     }
 
     let stepNumberLeft = obj.left - STEP_NUMBER_RADIUS;
