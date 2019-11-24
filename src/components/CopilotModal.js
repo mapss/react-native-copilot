@@ -107,7 +107,7 @@ class CopilotModal extends Component<Props, State> {
   async _animateMove(obj = {}): void {
     const layout = await this.measure();
     if (!this.props.androidStatusBarVisible && Platform.OS === 'android') {
-      obj.top -= DeviceInfo.hasNotch() && Platform.Version>=28? 0:StatusBar.currentHeight; // eslint-disable-line no-param-reassign
+      obj.top = obj.top - (DeviceInfo.hasNotch() && Platform.Version>=28? StatusBar.currentHeight:-StatusBar.currentHeight); // eslint-disable-line no-param-reassign
     }
 
     let stepNumberLeft = obj.left - STEP_NUMBER_RADIUS;
